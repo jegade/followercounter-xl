@@ -75,5 +75,5 @@ const char _PAGE_CONFIG_MODE1[] PROGMEM  = "<label>Modus: </label> <label class=
 const char _PAGE_CONFIG_MODE2[] PROGMEM  = "<label>Modus: </label> <label class=inline><input type=radio name=mode value=1        > Nur Counter</label> <label  class=inline><input type=radio name=mode value=2 checked > Nur Uhr</label> <label class=inline><input type=radio name=mode value=3> Counter und Uhr im Wechsel</label>" ;
 const char _PAGE_CONFIG_MODE3[] PROGMEM  = "<label>Modus: </label> <label class=inline><input type=radio name=mode value=1        > Nur Counter</label> <label  class=inline><input type=radio name=mode value=2         > Nur Uhr</label> <label class=inline><input type=radio name=mode value=3 checked> Counter und Uhr im Wechsel</label>" ;
 
-const char _PAGE_CONFIG_INTENSITY[] PROGMEM  = "<label>Helligkeit</label> <input type=range min=0 max=15 name=intensity value=%INTENSITY% >" ;
+const char _PAGE_CONFIG_INTENSITY[] PROGMEM  = "<label>Helligkeit</label> <input type=range min=0 max=254 name=intensity value=%INTENSITY% >" ;
 

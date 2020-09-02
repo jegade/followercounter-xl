@@ -22,6 +22,8 @@
 //#include <U8g2lib.h>
 #include <SPI.h>
 
+#define PGM_READ_UNALIGNED 0 
+
 #include <ESPStringTemplate.h>
 
 #include "index.h"
@@ -42,6 +44,30 @@
 // for NodeMCU 1.0
 #define DIN_PIN 15   // D8
 #define TOGGLE_PIN 0 // D3
+
+
+static const uint16_t PROGMEM
+    // These bitmaps were written for a backend that only supported
+    // 4 bits per color with Blue/Green/Red ordering while neomatrix
+    // uses native 565 color mapping as RGB.  
+    // I'm leaving the arrays as is because it's easier to read
+    // which color is what when separated on a 4bit boundary
+    // The demo code will modify the arrays at runtime to be compatible
+    // with the neomatrix color ordering and bit depth.
+    RGB_bmp[][64] = {
+      
+      // 10: multicolor smiley face
+      { 
+        0x4AB9, 0x5299, 0x5A98, 0x6A57, 0x7A17, 0x89B6, 0x9177, 0x8997, 
+        0x6996, 0x7174, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xA934, 0xA955, 
+        0x89B3, 0xFFFF, 0xB171, 0xB94F, 0xC12F, 0xFFFF, 0xFFFF, 0xF01E, 
+        0xA971, 0xFFFF, 0xC94D, 0xC92D, 0xD12E, 0xD12D, 0xFFFF, 0xC931, 
+        0xCA6B, 0xFFFF, 0xE267, 0xE248, 0xE1AA, 0xD90C, 0xFFFF, 0xD150, 
+        0xE366, 0xFFFF, 0xF3A3, 0xF303, 0xEA85, 0xE1E9, 0xFFFF, 0xD12F, 
+        0xF464, 0xF4E4, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xE16A, 0xD12E, 
+        0xF5A9, 0xFE4B, 0xFE6C, 0xFE2B, 0xF569, 0xF3E7, 0xE20A, 0xD14F, 
+       },
+};
 
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(32, 8, DIN_PIN,
                                                NEO_MATRIX_TOP + NEO_MATRIX_LEFT +
@@ -74,38 +100,52 @@ int buttonPushCounter = 0; // counter for the number of button presses
 int buttonState = 1;       // current state of the button
 int lastButtonState = 1;   // previous state of the button
 
-const uint8_t DotMatrixCondensed[990] U8G2_FONT_SECTION("DotMatrixCondensed") =
-    "\340\0\3\2\3\3\1\3\5\4\10\0\0\10\0\0\0\0\303\1C\3\301 \4@f!\4@f\42"
-    "\4@f#\4@f$\4@f%\4@f&\4@f'\4@f(\4@f)\4@f*"
-    "\4@f+\4@f,\4@f-\4@f.\4@f/\4@f\60\13\374\326(\221eH\244"
-    "D\1\61\10\373\322$R\227\1\62\12\374\326(Q\26\265\15\1\63\13\374\326(Q\226\210R\242\0\64"
-    "\12\374\326EJ\42\15Z\1\65\12\374V\14\332\230I\211\2\66\12\374V\265-\221\224(\0\67\11\374"
-    "V\14Y\251V\2\70\14\374\326(\221\224(\221\224(\0\71\12\374\326(\221\224lQ\11:\6\331K"
-    "$\1;\4@f<\4@f=\4@f>\4@f\77\4@f@\4@fA\4@fB\4"
-    "@fC\4@fD\4@fE\4@fF\4@fG\4@fH\4@fI\4@fJ\4"
-    "@fK\4@fL\4@fM\4@fN\4@fO\4@fP\4@fQ\4@fR\4"
-    "@fS\4@fT\4@fU\4@fV\4@fW\4@fX\4@fY\4@fZ\4"
-    "@f[\4@f\134\4@f]\4@f^\4@f_\4@f`\4@fa\4@fb\4"
-    "@fc\4@fd\4@fe\4@ff\4@fg\4@fh\4@fi\4@fj\4"
-    "@fk\4@fl\4@fm\4@fn\4@fo\4@fp\4@fq\4@fr\4"
-    "@fs\4@ft\4@fu\4@fv\4@fw\4@fx\4@fy\4@fz\4"
-    "@f{\4@f|\4@f}\4@f~\4@f\177\4@f\200\4@f\201\4@f\202\4"
-    "@f\203\4@f\204\4@f\205\4@f\206\4@f\207\4@f\210\4@f\211\4@f\212\4"
-    "@f\213\4@f\214\4@f\215\4@f\216\4@f\217\4@f\220\4@f\221\4@f\222\4"
-    "@f\223\4@f\224\4@f\225\4@f\226\4@f\227\4@f\230\4@f\231\4@f\232\4"
-    "@f\233\4@f\234\4@f\235\4@f\236\4@f\237\4@f\240\4@f\241\4@f\242\4"
-    "@f\243\4@f\244\4@f\245\4@f\246\4@f\247\4@f\250\4@f\251\4@f\252\4"
-    "@f\253\4@f\254\4@f\255\4@f\256\4@f\257\4@f\260\4@f\261\4@f\262\4"
-    "@f\263\4@f\264\4@f\265\4@f\266\4@f\267\4@f\270\4@f\271\4@f\272\4"
-    "@f\273\4@f\274\4@f\275\4@f\276\4@f\277\4@f\300\4@f\301\4@f\302\4"
-    "@f\303\4@f\304\4@f\305\4@f\306\4@f\307\4@f\310\4@f\311\4@f\312\4"
-    "@f\313\4@f\314\4@f\315\4@f\316\4@f\317\4@f\320\4@f\321\4@f\322\4"
-    "@f\323\4@f\324\4@f\325\4@f\326\4@f\327\4@f\330\4@f\331\4@f\332\4"
-    "@f\333\4@f\334\4@f\335\4@f\336\4@f\337\4@f\340\4@f\341\4@f\342\4"
-    "@f\343\4@f\344\4@f\345\4@f\346\4@f\347\4@f\350\4@f\351\4@f\352\4"
-    "@f\353\4@f\354\4@f\355\4@f\356\4@f\357\4@f\360\4@f\361\4@f\362\4"
-    "@f\363\4@f\364\4@f\365\4@f\366\4@f\367\4@f\370\4@f\371\4@f\372\4"
-    "@f\373\4@f\374\4@f\375\4@f\376\4@f\377\4@f\0\0\0\4\377\377\0";
+const uint8_t DotMatrixCondensed[1436] U8G2_FONT_SECTION("DotMatrixCondensed") =
+  "\276\0\2\2\2\3\3\4\4\3\6\0\377\5\377\5\0\0\352\1\330\5\177 \5\340\315\0!\6\265\310"
+  "\254\0\42\6\213\313$\25#\10\227\310\244\241\206\12$\10\227\310\215\70b\2%\10\227\310d\324F\1"
+  "&\10\227\310(\65R\22'\5\251\313\10(\6\266\310\251\62)\10\226\310\304\224\24\0*\6\217\312\244"
+  "\16+\7\217\311\245\225\0,\6\212\310)\0-\5\207\312\14.\5\245\310\4/\7\227\310Ve\4\60"
+  "\7\227\310-k\1\61\6\226\310\255\6\62\10\227\310h\220\312\1\63\11\227\310h\220\62X\0\64\10\227"
+  "\310$\65b\1\65\10\227\310\214\250\301\2\66\10\227\310\315\221F\0\67\10\227\310\314TF\0\70\10\227"
+  "\310\214\64\324\10\71\10\227\310\214\64\342\2:\6\255\311\244\0;\7\222\310e\240\0<\10\227\310\246\32"
+  "d\20=\6\217\311l\60>\11\227\310d\220A*\1\77\10\227\310\314\224a\2@\10\227\310UC\3"
+  "\1A\10\227\310UC\251\0B\10\227\310\250\264\322\2C\7\227\310\315\32\10D\10\227\310\250d-\0"
+  "E\10\227\310\214\70\342\0F\10\227\310\214\70b\4G\10\227\310\315\221\222\0H\10\227\310$\65\224\12"
+  "I\7\227\310\254X\15J\7\227\310\226\252\2K\10\227\310$\265\222\12L\7\227\310\304\346\0M\10\227"
+  "\310\244\61\224\12N\10\227\310\244q\250\0O\7\227\310UV\5P\10\227\310\250\264b\4Q\10\227\310"
+  "Uj$\1R\10\227\310\250\64V\1S\10\227\310m\220\301\2T\7\227\310\254\330\2U\7\227\310$"
+  "W\22V\10\227\310$\253L\0W\10\227\310$\65\206\12X\10\227\310$\325R\1Y\10\227\310$U"
+  "V\0Z\7\227\310\314T\16[\7\227\310\214X\16\134\10\217\311d\220A\0]\7\227\310\314r\4^"
+  "\5\213\313\65_\5\207\310\14`\6\212\313\304\0a\7\223\310\310\65\2b\10\227\310D\225\324\2c\7"
+  "\223\310\315\14\4d\10\227\310\246\245\222\0e\6\223\310\235\2f\10\227\310\246\264b\2g\10\227\307\35"
+  "\61%\0h\10\227\310D\225\254\0i\6\265\310\244\1j\10\233\307f\30U\5k\10\227\310\304\264T"
+  "\1l\7\227\310\310\326\0m\7\223\310<R\0n\7\223\310\250d\5o\7\223\310U\252\2p\10\227"
+  "\307\250\244V\4q\10\227\307-\225d\0r\6\223\310\315\22s\10\223\310\215\70\22\0t\10\227\310\245"
+  "\25\243\0u\7\223\310$+\11v\10\223\310$\65R\2w\7\223\310\244q\4x\7\223\310\244\62\25"
+  "y\11\227\307$\225dJ\0z\7\223\310\254\221\6{\10\227\310\251\32D\1|\6\265\310(\1}\11"
+  "\227\310\310\14RR\0~\6\213\313\215\4\241\6\265\310\244\1\242\10\227\310\245\21W\2\243\10\227\310\251"
+  "\264\322\0\244\7\227\310\244j\65\245\10\227\310$U\255\4\246\6\265\310(\1\247\7\227\310\251.\5\250"
+  "\6\207\314\244\0\251\6\217\312m \252\7\227\310\35\31\14\253\6\216\312\311\0\254\6\213\312\314\0\255\5"
+  "\206\312\10\256\6\217\312(U\257\5\207\314\14\260\6\217\312u\1\261\10\227\310\245\225\321\0\262\6\217\312"
+  "\310(\263\6\217\312\254!\264\6\252\313)\0\265\10\227\310$kE\0\266\7\227\310\255\344\0\267\5\217"
+  "\311<\270\7\217\310e\260\0\271\5\255\312\14\272\7\227\310u\243\1\273\6\256\312D\5\274\10\227\310\304"
+  "L\310\0\275\7\227\310\304\14\15\276\10\227\310(\15e\0\277\10\227\310e\230\342\0\300\11\227\310e\220"
+  "\322H\1\301\10\227\310\325 \215\24\302\10\227\310l\224F\12\303\10\227\310\215\230F\12\304\10\227\310\244"
+  "\326P\1\305\10\227\310(\225\206\12\306\10\227\310\215\64\324\0\307\11\233\307\315\14dJ\0\310\7\227\310"
+  "ep\15\311\7\227\310\225C\15\312\10\227\310l\60\324\0\313\10\227\310\244\14\206\32\314\10\227\310e\60"
+  "R\32\315\7\227\310\225+\15\316\10\227\310l\260\322\0\317\10\227\310\244\14V\32\320\10\227\310\250\64\324"
+  "\2\321\10\227\310\310\65T\0\322\10\227\310e\60\324\10\323\10\227\310\225#\215\0\324\10\227\310l\60\322"
+  "\10\325\10\227\310\310\261F\0\326\11\227\310\244\14F\32\1\327\6\217\311\244\16\330\7\227\310\35j\1\331"
+  "\11\227\310d\220\222\32\1\332\10\227\310\246J\215\0\333\10\227\310l\220\324\10\334\11\227\310\244\14\222\32"
+  "\1\335\10\227\310\246j\244\4\336\10\227\310\304\221\206\4\337\10\233\307]iE\0\340\10\227\310e\220\216"
+  "\0\341\10\227\310\325`\215\0\342\7\227\310lt\4\343\10\227\310\215\270F\0\344\10\227\310\244\214\216\0"
+  "\345\7\227\310YG\0\346\7\223\310\215#\1\347\10\227\307m S\2\350\10\227\310e\220\206\22\351\10"
+  "\227\310\325`(\1\352\10\227\310l\64\224\0\353\10\227\310\244\214\206\22\354\7\266\310DU\1\355\6\226"
+  "\310\311T\356\10\227\310l\24+\0\357\10\227\310\244\214b\5\360\10\227\310\215\270\222\0\361\10\227\310\310"
+  "\221\222\12\362\10\227\310e\220\272\0\363\10\227\310\325 \265\0\364\7\227\310l\324\5\365\7\227\310H\325"
+  "\5\366\10\227\310\244\214\272\0\367\10\227\310e\264Q\2\370\7\223\310\215\265\0\371\11\227\310d\220\222J"
+  "\2\372\10\227\310\246J%\1\373\10\227\310l\220T\22\374\11\227\310\244\14\222J\2\375\10\233\307\246\226"
+  "L\11\376\10\227\307D\225V\4\377\12\233\307\244\14R\222)\1\0\0\0\4\377\377\0";
 
 //define your default values here, if there are different values in config.json, they are overwritten.
 char instagramName[40];
@@ -191,8 +231,8 @@ void getConfig()
   String matrixIntensityString = intensityString;
   matrixIntensityString.toCharArray(matrixIntensity, 40);
 
-  //1 u8g2.setContrast(16*matrixIntensityString.toInt());
-  //1 u8g2.refreshDisplay();
+  matrix.setBrightness(matrixIntensityString.toInt());
+  matrix.show();
 
   saveConfig();
 
@@ -237,15 +277,29 @@ void printString(int x, int y, String output, int font)
   }
 
   
-  matrix.fillScreen(0);
 
 
   u8g2.setCursor(x, y);
   u8g2.print(output.c_str());
  
   matrix.show();
-
 }
+
+
+void fixdrawRGBBitmap() {
+  
+
+  
+  matrix.drawRGBBitmap(0, 0, RGB_bmp[0], 8, 8);
+}
+
+void printLogo()  {
+
+  fixdrawRGBBitmap();
+
+  matrix.show();
+}
+
 
 void printPixel(int x, int y)
 {
@@ -328,7 +382,7 @@ void setup()
 
   // Requesting Instagram and Intensity for Display
   WiFiManagerParameter custom_instagram("Instagram", "Instagram", instagramName, 40);
-  WiFiManagerParameter custom_intensity("Helligkeit", "Helligkeit 0-15", matrixIntensity, 5);
+  WiFiManagerParameter custom_intensity("Helligkeit", "Helligkeit 0-254", matrixIntensity, 5);
   WiFiManagerParameter custom_modules("Elemente", "Anzahl Elemente 4-8", maxModules, 5);
 
   // Add params to wifiManager
@@ -341,7 +395,7 @@ void setup()
 
   matrix.begin();
   matrix.setTextWrap(false);
-  matrix.setBrightness(40);
+  matrix.setBrightness(10);
   matrix.setTextColor(matrix.Color(255, 0, 0));
 
   configTime(0, 0, "pool.ntp.org", "time.nist.gov");
@@ -376,7 +430,9 @@ void setup()
 
   String matrixIntensityString = matrixIntensity;
 
-  //u8g2.setContrast(16 * matrixIntensityString.toInt());
+  matrix.setBrightness(matrixIntensityString.toInt());
+
+ 
 
   //save the custom parameters to FS
   if (shouldSaveConfig)
@@ -387,7 +443,7 @@ void setup()
     //end save
   }
 
-  printString(0, 0, "Starte", 1);
+  printString(0, 7, "Starte", 1);
 
 
 
@@ -697,11 +753,13 @@ void loop()
 void printTime()
 {
 
+  
   time_t now = time(nullptr);
   String time = String(ctime(&now));
   time.trim();
   time.substring(11, 16).toCharArray(time_value, 10);
 
+  matrix.fillScreen(0);
   printString(6, 8, time_value, 2);
 }
 
@@ -718,35 +776,12 @@ void printCurrentFollower()
 
     int modules = String(maxModules).toInt();
 
-    if (follower > 9999 && modules < 5)
-    {
-      clearBuffer();
-      printString(0, 9, copy, 2);
-    }
-    else
-    {
+    
 
       clearBuffer();
-
-      printHline(1, 0, 6);
-
-      // Äußerer Rahmen Insta Logo
-      printHline(1, 0, 6);
-      printHline(1, 7, 6);
-
-      printVline(0, 1, 0, 6);
-      printVline(7, 1, 7, 6);
-
-      // Innererer Rahmen Insta Logo
-      printHline(3, 2, 2);
-      printHline(3, 5, 2);
-
-      printVline(2, 3, 2, 4);
-      printVline(5, 3, 5, 4);
-
-      printPixel(6, 1);
-
-      printString(10, 8, copy, 2);
-    }
+      matrix.fillScreen(0);
+      printLogo();
+      printString(10, 6, copy, 2);
+    
   }
 }
