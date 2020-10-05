@@ -69,9 +69,11 @@ static const uint16_t PROGMEM
        },
 };
 
+// NEO_MATRIX_COLUMNS ggf. anstatt NEO_MATRIX_ROWS
+
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(32, 8, DIN_PIN,
                                                NEO_MATRIX_TOP + NEO_MATRIX_LEFT +
-                                                   NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
+                                               NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
                                                NEO_GRB + NEO_KHZ800);
 
 U8G2_FOR_ADAFRUIT_GFX u8g2;
@@ -572,7 +574,7 @@ void updateFirmware()
   ESPhttpUpdate.onProgress(update_progress);
   ESPhttpUpdate.onError(update_error);
 
-  t_httpUpdate_return ret = ESPhttpUpdate.update(client, "https://counter.buuild.it/static/themes/counter/followercounter.ino.bin");
+  t_httpUpdate_return ret = ESPhttpUpdate.update(client, "https://counter.buuild.it/static/themes/counter/followercounter-xl.ino.bin");
 
   switch (ret)
   {
@@ -760,7 +762,7 @@ void printTime()
   time.substring(11, 16).toCharArray(time_value, 10);
 
   matrix.fillScreen(0);
-  printString(6, 8, time_value, 2);
+  printString(6, 6, time_value, 2);
 }
 
 void printCurrentFollower()

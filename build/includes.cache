@@ -1,0 +1,277 @@
+[
+  {
+    "Sourcefile": "",
+    "Include": "",
+    "Includepath": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/cores/esp8266"
+  },
+  {
+    "Sourcefile": "",
+    "Include": "",
+    "Includepath": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/variants/d1_mini"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "ESP8266WiFi.h",
+    "Includepath": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "InstagramStats.h",
+    "Includepath": "/home/jens/Arduino/libraries/InstagramStats/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "JsonListener.h",
+    "Includepath": "/home/jens/Arduino/libraries/Json_Streaming_Parser"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "ESP8266HTTPClient.h",
+    "Includepath": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266HTTPClient/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "ESP8266httpUpdate.h",
+    "Includepath": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266httpUpdate/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "ArduinoJson.h",
+    "Includepath": "/home/jens/Arduino/libraries/ArduinoJson/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "DNSServer.h",
+    "Includepath": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/DNSServer/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "ESP8266WebServer.h",
+    "Includepath": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WebServer/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "WiFiManager.h",
+    "Includepath": "/home/jens/Arduino/libraries/WiFiManager"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "NTPClient.h",
+    "Includepath": "/home/jens/Arduino/libraries/NTPClient"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "SPI.h",
+    "Includepath": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/SPI"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "ESPStringTemplate.h",
+    "Includepath": "/home/jens/Arduino/libraries/ESPStringTemplate/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "U8g2_for_Adafruit_GFX.h",
+    "Includepath": "/home/jens/Arduino/libraries/U8g2_for_Adafruit_GFX/src"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "Adafruit_GFX.h",
+    "Includepath": "/home/jens/Arduino/libraries/Adafruit_GFX_Library"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "Adafruit_NeoMatrix.h",
+    "Includepath": "/home/jens/Arduino/libraries/Adafruit_NeoMatrix"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "Adafruit_NeoPixel.h",
+    "Includepath": "/home/jens/Arduino/libraries/Adafruit_NeoPixel"
+  },
+  {
+    "Sourcefile": "/home/jens/Dropbox/ESP8266/followercounter-xl/build/sketch/followercounter-xl.ino.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/BearSSLHelpers.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/CertStoreBearSSL.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/ESP8266WiFi.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/ESP8266WiFiAP.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/ESP8266WiFiGeneric.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/ESP8266WiFiMulti.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/ESP8266WiFiSTA-WPS.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/ESP8266WiFiSTA.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/ESP8266WiFiScan.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/WiFiClient.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/WiFiClientSecureAxTLS.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/WiFiClientSecureBearSSL.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/WiFiServer.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/WiFiServerSecureAxTLS.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/WiFiServerSecureBearSSL.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WiFi/src/WiFiUdp.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/InstagramStats/src/InstagramStats.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Json_Streaming_Parser/JsonListener.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Json_Streaming_Parser/JsonStreamingParser.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266HTTPClient/src/ESP8266HTTPClient.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266httpUpdate/src/ESP8266httpUpdate.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/DNSServer/src/DNSServer.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/ESP8266WebServer/src/detail/mimetable.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/WiFiManager/WiFiManager.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/NTPClient/NTPClient.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/.arduino15/packages/esp8266/hardware/esp8266/2.6.3/libraries/SPI/SPI.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/ESPStringTemplate/src/ESPStringTemplate.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/U8g2_for_Adafruit_GFX/src/U8g2_for_Adafruit_GFX.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/U8g2_for_Adafruit_GFX/src/u8g2_fonts.c",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Adafruit_GFX_Library/Adafruit_GFX.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Adafruit_GFX_Library/Adafruit_SPITFT.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Adafruit_GFX_Library/glcdfont.c",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Adafruit_NeoMatrix/Adafruit_NeoMatrix.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Adafruit_NeoPixel/Adafruit_NeoPixel.cpp",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Adafruit_NeoPixel/esp8266.c",
+    "Include": "",
+    "Includepath": ""
+  },
+  {
+    "Sourcefile": "/home/jens/Arduino/libraries/Adafruit_NeoPixel/kendyte_k210.c",
+    "Include": "",
+    "Includepath": ""
+  }
+]
